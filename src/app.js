@@ -34,7 +34,9 @@ app.get("/products/:pid", (request, response) => {
         const productId = result.find(e => e.id === id)
         if (!productId){
             console.error("No se encuentra ese id");
-            response.sendStatus(500);
+            response.status(500).json({
+                error: "No se encontro el id"
+            });
         } else{
             const index = result.indexOf(productId);
             return response.status(200).json(result[index]);
